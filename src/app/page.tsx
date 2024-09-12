@@ -37,20 +37,30 @@ export default function Page() {
 
   return (
     <>
-      <header className="sticky z-20 top-0 w-full bg-white shadow-md px-8 flex justify-between h-[70px] items-center md:px-[60px] lg:px-[170px]">
-        <span className="text-xl font-extrabold uppercase">Brand</span>
-        <div
-          className="flex items-center gap-1 md:order-last cursor-pointer"
-          onClick={() => setCartActive(true)}
-        >
-          <PiBag size={25} />
-          <span className="hidden md:block">Cart</span>
-          <span>(0)</span>
+      <header className="h-[70px] sticky top-0 z-20 w-full">
+        <div className="absolute z-20 md:relative md:z-0 w-full bg-white shadow-md px-8 flex justify-between h-full items-center md:px-[60px] lg:px-[170px]">
+          <span className="text-xl font-extrabold uppercase">Brand</span>
+          <div
+            className="flex items-center gap-1 md:order-last cursor-pointer"
+            onClick={() => setCartActive(true)}
+          >
+            <PiBag size={25} />
+            <span className="hidden md:block">Cart</span>
+            <span>(0)</span>
+          </div>
+          <button
+            className="md:hidden"
+            onClick={() => setMenuActive(!menuActive)}
+          >
+            <IoMenuOutline size={28} className={menuActive ? "hidden" : ""} />
+            <IoClose size={28} className={menuActive ? "" : "hidden"} />
+          </button>
         </div>
+        {/* Navbar */}
         <nav
           className={`${
             menuActive ? "top-full" : "-top-[280%]"
-          } absolute -z-10 py-4 bg-white w-full left-0 text-right px-8 duration-500 ease-out md:static md:w-auto md:px-0 md:ml-auto md:mr-16`}
+          } absolute z-10 py-4 bg-white w-full left-0 md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-right px-8 duration-500 ease-out md:z-30 md:w-auto shadow-md`}
         >
           <ul className="flex flex-col gap-2 md:flex-row md:flex md:gap-14">
             <li className="md:relative md:hover:underline md:hover:underline-offset-[6px]">
@@ -89,13 +99,6 @@ export default function Page() {
             </li>
           </ul>
         </nav>
-        <button
-          className="md:hidden"
-          onClick={() => setMenuActive(!menuActive)}
-        >
-          <IoMenuOutline size={28} className={menuActive ? "hidden" : ""} />
-          <IoClose size={28} className={menuActive ? "" : "hidden"} />
-        </button>
       </header>
       <div
         className={`${
