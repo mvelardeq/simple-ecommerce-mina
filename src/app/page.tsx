@@ -1,15 +1,7 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
-import React, { FormEvent, useState } from "react";
-import {
-  IoLogoFacebook,
-  IoLogoInstagram,
-  IoLogoTwitter,
-  IoMdArrowDropdown,
-} from "react-icons/io";
-import { IoClose, IoMenuOutline } from "react-icons/io5";
-import { PiBag } from "react-icons/pi";
+import React, { FormEvent } from "react";
+import { IoLogoFacebook, IoLogoInstagram, IoLogoTwitter } from "react-icons/io";
 import imageFirst from "./assets/images/first.png";
 import articleOne from "./assets/images/article-1.png";
 import articleTwo from "./assets/images/article-2.png";
@@ -22,98 +14,18 @@ import signUpImage from "./assets/images/sign-up-image.png";
 import followImageOne from "./assets/images/follow-image-1.png";
 import followImageTwo from "./assets/images/follow-image-2.png";
 import followImageThree from "./assets/images/follow-image-3.png";
+import { Header } from "@/components/Header/Header";
 
 export default function Page() {
-  const [menuActive, setMenuActive] = useState(false);
-
-  const [dropLinkActive, setDropLinkActive] = useState(false);
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("hello");
   };
 
-  const [cartActive, setCartActive] = useState(false);
-
   return (
     <>
-      <header className="h-[70px] sticky top-0 z-20 w-full">
-        <div className="absolute z-20 md:relative md:z-0 w-full bg-white shadow-md px-8 flex justify-between h-full items-center md:px-[60px] lg:px-[170px]">
-          <span className="text-xl font-extrabold uppercase">Brand</span>
-          <div
-            className="flex items-center gap-1 md:order-last cursor-pointer"
-            onClick={() => setCartActive(true)}
-          >
-            <PiBag size={25} />
-            <span className="hidden md:block">Cart</span>
-            <span>(0)</span>
-          </div>
-          <button
-            className="md:hidden"
-            onClick={() => setMenuActive(!menuActive)}
-          >
-            <IoMenuOutline size={28} className={menuActive ? "hidden" : ""} />
-            <IoClose size={28} className={menuActive ? "" : "hidden"} />
-          </button>
-        </div>
-        {/* Navbar */}
-        <nav
-          className={`${
-            menuActive ? "top-full" : "-top-[280%]"
-          } absolute z-10 py-4 bg-white w-full left-0 md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 text-right px-8 duration-500 ease-out md:z-30 md:w-auto shadow-md md:shadow-none`}
-        >
-          <ul className="flex flex-col gap-2 md:flex-row md:flex md:gap-14">
-            <li className="md:relative md:hover:underline md:hover:underline-offset-[6px]">
-              <div
-                className="flex justify-end items-center cursor-pointer gap-2"
-                onClick={() => setDropLinkActive(!dropLinkActive)}
-              >
-                <span>Shop</span>
-                <IoMdArrowDropdown
-                  className={`duration-500 ${
-                    dropLinkActive ? "rotate-180" : ""
-                  }`}
-                />
-              </div>
-              <ul
-                className={`${
-                  dropLinkActive ? " " : "hidden"
-                } md:absolute md:text-start pr-4 md:top-[120%] md:left-0 md:w-[160px] md:rounded-md md:duration-500 md:px-6 md:py-4 md:bg-white`}
-              >
-                <li className="md:hover:underline md:hover:underline-offset-[6px] md:mb-2">
-                  <Link href={"/dashboard"}>All products</Link>
-                </li>
-                <li className="md:hover:underline md:hover:underline-offset-[6px]">
-                  <Link href={"/dashboard"}>New collection</Link>
-                </li>
-              </ul>
-            </li>
-            <li className="md:hover:underline md:hover:underline-offset-[6px]">
-              <Link href={"/dashboard"}>Sustainability</Link>
-            </li>
-            <li className="md:hover:underline md:hover:underline-offset-[6px]">
-              <Link href={"/dashboard"}>About</Link>
-            </li>
-            <li className="md:hover:underline md:hover:underline-offset-[6px]">
-              <Link href={"/dashboard"}>Contact</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <div
-        className={`${
-          cartActive ? "right-0" : "-right-[110%]"
-        } fixed transition-all duration-500 top-0 z-50 bg-white w-screen md:w-1/2 h-screen p-4 flex flex-col`}
-      >
-        <IoClose
-          onClick={() => setCartActive(false)}
-          className="self-end mb-[150px] cursor-pointer"
-          size={24}
-        />
-        <p className="self-center text-lg font-semibold">
-          Shopping cart is epmty
-        </p>
-      </div>
+      <Header />
+
       <main className="">
         <span className="py-[0.6rem] md:py-4 text-center px-7 bg-purple-950 text-white flex items-center justify-center">
           Free shipping on orders over 50$ amount
